@@ -8,6 +8,7 @@ fetch("/api/transaction")
   .then((data) => {
     // save db data on global variable
     transactions = data;
+    console.log("transactions: ", transactions);
 
     populateTotal();
     populateTable();
@@ -17,6 +18,8 @@ fetch("/api/transaction")
 function populateTotal() {
   // reduce transaction amounts to a single total value
   let total = transactions.reduce((total, t) => {
+    // console.log("total: ", total);
+    console.log("t: ", t);
     return total + parseInt(t.value);
   }, 0);
 
@@ -29,6 +32,7 @@ function populateTable() {
   tbody.innerHTML = "";
 
   transactions.forEach((transaction) => {
+    // console.log("populateTable(transaction) ", transaction);
     // create and populate a table row
     let tr = document.createElement("tr");
     tr.innerHTML = `
